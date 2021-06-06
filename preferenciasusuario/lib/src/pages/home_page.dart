@@ -46,8 +46,11 @@ class HomePage extends StatelessWidget {
               Icons.pages,
               color: Colors.blue,
             ),
-            title: Text('Pages'),
-            onTap: () {},
+            title: Text('Home'),
+            onTap: () => Navigator.pushReplacementNamed(
+                context,
+                HomePage
+                    .routeName), //pushReplacementNamed Para cambiar la raiz y el stack se reinicia
           ),
           ListTile(
             leading: Icon(
@@ -74,7 +77,10 @@ class HomePage extends StatelessWidget {
               onTap: () {
                 Navigator.pop(
                     context); //Cierra el menu, para ir a la pagina de Settings.
-                Navigator.pushNamed(context, SettingsPage.routeName);
+                Navigator.pushReplacementNamed(
+                    context,
+                    SettingsPage
+                        .routeName); //pushReplacementNamed Para cambiar la raiz y el stack se reinicia
               }),
         ],
       ),
