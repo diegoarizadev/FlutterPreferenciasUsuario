@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:preferenciasusuario/src/pages/settings_page.dart';
 
 class HomePage extends StatelessWidget {
   static final String routeName =
@@ -11,7 +12,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Preferencias de usuario'),
       ),
-      drawer: _createMenu(),
+      drawer: _createMenu(context),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -26,7 +27,57 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Drawer _createMenu() {
-    return Drawer();
+  Drawer _createMenu(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            child: Container(),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/menu-img.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.pages,
+              color: Colors.blue,
+            ),
+            title: Text('Pages'),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.party_mode,
+              color: Colors.blue,
+            ),
+            title: Text('Party Mode'),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.people,
+              color: Colors.blue,
+            ),
+            title: Text('People'),
+            onTap: () {},
+          ),
+          ListTile(
+              leading: Icon(
+                Icons.settings,
+                color: Colors.blue,
+              ),
+              title: Text('Settings'),
+              onTap: () {
+                Navigator.pop(
+                    context); //Cierra el menu, para ir a la pagina de Settings.
+                Navigator.pushNamed(context, SettingsPage.routeName);
+              }),
+        ],
+      ),
+    );
   }
 }
