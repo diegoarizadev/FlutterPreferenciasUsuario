@@ -23,7 +23,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();
-
+    loadPreferences();
     _textController = new TextEditingController(text: _nombre);
   }
 
@@ -96,7 +96,16 @@ class _SettingsPageState extends State<SettingsPage> {
         'genero', //Llave para acceder a la información
         value!); //Valor almacenado
 
-    _genero = value!;
+    _genero = value;
+    setState(() {});
+  }
+
+  loadPreferences() async {
+    SharedPreferences per = await SharedPreferences
+        .getInstance(); //Instancia para acceder al bloque de memoria donde se almacenara la información.
+
+    _genero = (per.getInt('genero') ?? 1);
+
     setState(() {});
   }
 }
