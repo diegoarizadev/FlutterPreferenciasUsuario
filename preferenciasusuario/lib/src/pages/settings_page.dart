@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:preferenciasusuario/src/widgets/menu_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsPage extends StatefulWidget {
   static final String routeName =
@@ -21,7 +22,6 @@ class _SettingsPageState extends State<SettingsPage> {
   //Ciclo de vida del StatefulWidget
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _textController = new TextEditingController(text: _nombre);
@@ -48,7 +48,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           Divider(),
           SwitchListTile(
-            value: true,
+            value: _colorSecundario,
             title: Text('Color Secundario'),
             onChanged: (value) {
               setState(() {
@@ -59,23 +59,13 @@ class _SettingsPageState extends State<SettingsPage> {
           RadioListTile(
             value: 1,
             groupValue: _genero,
-            onChanged: (value) {
-              setState(() {
-                _genero = value
-                    as int; //Se castea la vvariable value a int ya que es un object
-              });
-            },
+            onChanged: _setSelectedRadio,
             title: Text('Masculino'),
           ),
           RadioListTile(
             value: 2,
             groupValue: _genero,
-            onChanged: (value) {
-              setState(() {
-                _genero = value
-                    as int; //Se castea la vvariable value a int ya que es un object
-              });
-            },
+            onChanged: _setSelectedRadio,
             title: Text('Femenino'),
           ),
           Divider(),
@@ -95,5 +85,18 @@ class _SettingsPageState extends State<SettingsPage> {
         ],
       ),
     );
+  }
+
+  void _setSelectedRadio(int? value) async {
+    SharedPreferences per = await SharedPreferences
+        .getInstance(); //Instancia para acceder al bloque de memoria donde se almacenara la información.
+
+    //Persistir(grabar) información
+    await per.setInt(
+        'genero', //Llave para acceder a la información
+        value!); //Valor almacenado
+
+    _genero = value!;
+    setState(() {});
   }
 }
