@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Preferencias de usuario'),
       ),
+      drawer: _createMenu(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -23,5 +24,9 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Drawer _createMenu() {
+    return Drawer();
   }
 }
