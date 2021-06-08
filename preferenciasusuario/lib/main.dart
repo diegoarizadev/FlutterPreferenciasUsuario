@@ -13,12 +13,13 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  late var per = new PreferencesUser();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Preferencias de usuario',
-      initialRoute: HomePage.routeName, //Nombre de la ura
+      initialRoute: per.getLastPage, //HomePage.routeName, //Nombre de la ruta
       routes: {
         HomePage.routeName: (BuildContext context) => HomePage(),
         SettingsPage.routeName: (BuildContext context) => SettingsPage(),
