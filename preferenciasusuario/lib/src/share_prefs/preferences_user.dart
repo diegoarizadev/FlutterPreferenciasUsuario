@@ -34,7 +34,19 @@ class PreferencesUser {
     _per.setInt('genero', value);
   }
 
-  // get getColorSecundario(String value){
-  //   return  ;
-  // }
+  bool get getColorSecundario {
+    return _per.getBool('color') ?? false;
+  }
+
+  set setColorSecundario(bool value) {
+    _per.setBool('color', value);
+  }
+
+  String get getNombre {
+    return _per.getString('nombre') ?? '';
+  }
+
+  set setNombre(String value) {
+    _per.setString('nombre', value);
+  }
 }

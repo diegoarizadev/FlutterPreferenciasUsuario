@@ -5,16 +5,14 @@ import 'package:preferenciasusuario/src/widgets/menu_widget.dart';
 class SettingsPage extends StatefulWidget {
   static final String routeName =
       'settings'; //Referecia del routeName para obtener la pagina
-  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool _colorSecundario = false;
+  late bool _colorSecundario;
   late int _genero;
-  String _nombre = 'Diego A.';
 
 //se crea un controller para pre cargar un valor en el textfiled.
   TextEditingController _textController = new TextEditingController();
@@ -26,7 +24,8 @@ class _SettingsPageState extends State<SettingsPage> {
   void initState() {
     super.initState();
     _genero = pre.getGenero;
-    _textController = new TextEditingController(text: _nombre);
+    _colorSecundario = pre.getColorSecundario;
+    _textController = new TextEditingController(text: pre.getNombre);
   }
 
   @override
@@ -34,6 +33,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Ajustes'),
+        backgroundColor: (_colorSecundario) ? Colors.orange : Colors.blue,
       ),
       drawer: MenuWidget(),
       body: ListView(
@@ -55,6 +55,7 @@ class _SettingsPageState extends State<SettingsPage> {
             onChanged: (value) {
               setState(() {
                 _colorSecundario = value;
+                pre.setColorSecundario = value;
               });
             },
           ),
@@ -81,7 +82,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 labelText: 'Nombre:',
                 helperText: 'Escribe tu nombre',
               ),
-              onChanged: (value) {},
+              onChanged: (value) {
+                setState(() {
+                  pre.setNombre = value;
+                });
+              },
             ),
           ),
         ],
