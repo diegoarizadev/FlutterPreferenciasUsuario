@@ -23,6 +23,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();
+    pre.setLastPage = SettingsPage.routeName; //Alamacena la pagina visitada
     _genero = pre.getGenero;
     _colorSecundario = pre.getColorSecundario;
     _textController = new TextEditingController(text: pre.getNombre);

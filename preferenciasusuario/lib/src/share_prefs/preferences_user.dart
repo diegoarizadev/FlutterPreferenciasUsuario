@@ -1,3 +1,4 @@
+import 'package:preferenciasusuario/src/pages/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -14,11 +15,6 @@ class PreferencesUser {
 
   late SharedPreferences
       _per; //Late es una palabra clave en Dart 2.12 con el objectivo de permitir campos nulos que no tienen que inicializarse inmediatamente.
-
-  //ninguna de estas propiedad se usa.
-  // bool _colorSecundario = false;
-  // int _genero = 0;
-  // String _nombre = '';
 
   iniPrefs() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -48,5 +44,13 @@ class PreferencesUser {
 
   set setNombre(String value) {
     _per.setString('nombre', value);
+  }
+
+  String get getLastPage {
+    return _per.getString('pagina') ?? 'Home';
+  }
+
+  set setLastPage(String value) {
+    _per.setString('pagina', value);
   }
 }

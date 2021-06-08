@@ -10,6 +10,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    pre.setLastPage = HomePage.routeName; //Alamacena la pagina visitada
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Preferencias de usuario'),
