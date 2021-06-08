@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/cupertino.dart';
 
 class PreferencesUser {
   //Begin PATRON SINGLETON
@@ -20,11 +21,12 @@ class PreferencesUser {
   // String _nombre = '';
 
   iniPrefs() async {
+    WidgetsFlutterBinding.ensureInitialized();
     this._per = await SharedPreferences
         .getInstance(); //Instancia para acceder al bloque de memoria donde se almacenara la información.
   }
 
-  get getGenero {
+  int get getGenero {
     return _per.getInt('genero') ?? 1; //Si es null, retorne 1
   }
 
