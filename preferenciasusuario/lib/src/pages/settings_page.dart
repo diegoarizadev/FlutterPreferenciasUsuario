@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:preferenciasusuario/src/share_prefs/preferences_user.dart';
 import 'package:preferenciasusuario/src/widgets/menu_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,11 +20,12 @@ class _SettingsPageState extends State<SettingsPage> {
 //se crea un controller para pre cargar un valor en el textfiled.
   TextEditingController _textController = new TextEditingController();
 
+  final pre = new PreferencesUser();
+
   //Ciclo de vida del StatefulWidget
   @override
   void initState() {
     super.initState();
-    loadPreferences();
     _textController = new TextEditingController(text: _nombre);
   }
 
@@ -97,15 +99,6 @@ class _SettingsPageState extends State<SettingsPage> {
         value!); //Valor almacenado
 
     _genero = value;
-    setState(() {});
-  }
-
-  loadPreferences() async {
-    SharedPreferences per = await SharedPreferences
-        .getInstance(); //Instancia para acceder al bloque de memoria donde se almacenara la información.
-
-    _genero = (per.getInt('genero') ?? 1);
-
     setState(() {});
   }
 }
